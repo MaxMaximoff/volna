@@ -1,0 +1,30 @@
+# Volna: SETUP's velocity CURVE and KEYVEL (SETUP: SHIFT [REC] = 13 held + PATCH [HOME] = 8; KNOB2 CURVE, KNOB3
+# KEYVEL). OSC2 and OSC3 off first (MIX [SCL], KNOB2 KNOB3) so the level is steady. (The host turns an encoder a
+# detent at a time: 40 detents take ~0.4 s, so the next page waits.) A3 over USB MIDI at velocity 30 under each
+# curve: 1500 LIN, 1800 a 127 to compare, 2500 SOFT, 3000 HARD, 3500 FIX (KEYVEL 100); 4000 LIN again and the
+# FM-1's own key A3 at KEYVEL 40
+300 btn 3
+310 enc 3 -40
+320 enc 4 -40
+900 btndown 13
+1000 btn 8
+1100 btnup 13
+1500 midi 0x90 57 30
+1700 midi 0x80 57 0
+1800 midi 0x90 57 127
+2000 midi 0x80 57 0
+2400 enc 3 1
+2500 midi 0x90 57 30
+2700 midi 0x80 57 0
+2900 enc 3 1
+3000 midi 0x90 57 30
+3200 midi 0x80 57 0
+3400 enc 3 1
+3500 midi 0x90 57 30
+3700 midi 0x80 57 0
+3750 enc 3 -3
+3760 enc 4 -15
+4000 keys 0x10
+4100 shot
+4200 keys 0
+4700 end

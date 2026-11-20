@@ -1,0 +1,23 @@
+# Volna stage 2: four voices with the default envelope; a fifth note steals the oldest; the ENV section (button 5,
+# [LFO]: a slow attack and a long release); the MIX section (button 3, [SCL]: noise up; twice more: row C, ring up)
+1000 keys 0x4890
+1500 shot
+1700 keys 0x44890
+2100 shot
+2300 keys 0
+3000 btn 5
+3100 enc 2 30
+3200 enc 5 20
+3300 shot
+3400 keys 0x80
+4400 keys 0
+5000 shot
+5300 btn 3
+5400 enc 5 16
+5500 btn 3
+5550 btn 3
+5600 enc 2 16
+5700 shot
+5800 keys 0x880
+6500 keys 0
+7900 end

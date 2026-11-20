@@ -1,0 +1,22 @@
+# Volna: a tie in an arp pattern (STEPS [SEQ] = 11, row A KNOB3 = LENGTH: past +3, TIE). RUN (12), the chord over
+# MIDI (A3 C4 E4), PATTERN 1 (straight 16ths) from STEPS (it turns pattern 1 on): 8 notes a second;
+#   3100 step 1 tied (picked already: STEPS starts there; LENGTH +4 -> TIE): step 2 holds its note, 15 notes in 16 steps: 7.5 a second;
+#   and steps 3 and 4 tied too (a chain: 5 holds step 4's): 13 in 16, 6.5 a second
+900 btn 12
+1000 btn 11
+1500 midi 0x90 57 100
+1500 midi 0x90 60 100
+1500 midi 0x90 64 100
+3100 enc 4 4
+4500 shot
+5000 keys 0x10
+5050 keys 0
+5100 enc 4 4
+5300 keys 0x40
+5350 keys 0
+5400 enc 4 4
+6000 shot
+7500 midi 0x80 57 0
+7500 midi 0x80 60 0
+7500 midi 0x80 64 0
+8000 end

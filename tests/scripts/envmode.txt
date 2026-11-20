@@ -1,0 +1,24 @@
+# Volna stage 4b: the envelopes' modes. FM-1 ids: button 5 ENV [LFO] (again: rows A B C); encoders 2..5 KNOB1..4.
+# OSC2 and OSC3 off (MIX [SCL] = 3). AMP: DECAY 80 -> 70 (row A); row B: MODE LOOP S1S2, DEC2 70, SUS2 20 (S1 stays
+# 100): A3 held 1500 .. 3500, the level swings between S1 and S2. Then ONE SHOT (MODE -1): a 50 ms tap at 4000
+# sounds on through decay, decay 2 and release; then ADSR (MODE -2): the same tap at 5000 ends with its release.
+900 btn 3
+910 enc 3 -40
+920 enc 4 -40
+1000 btn 5
+1100 enc 3 -5
+1200 btn 5
+1250 enc 2 3
+1300 enc 4 3
+1350 enc 5 -40
+1500 keys 0x10
+2500 shot
+3500 keys 0
+3600 enc 2 -1
+4000 keys 0x10
+4050 keys 0
+4600 shot
+4700 enc 2 -2
+5000 keys 0x10
+5050 keys 0
+6000 end

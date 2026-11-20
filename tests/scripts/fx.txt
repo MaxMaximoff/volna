@@ -1,0 +1,48 @@
+# Volna stage 7b: the effects (FX [GLO] = button 7; SELECT the slot; FX again: row B). Encoders 0 SELECT, 2..5
+# KNOB1..4. OSC2 and OSC3 off (MIX = 3), a short pluck: ENV (5) SUST 0, DECAY 40. A3 (57) over MIDI, 50 ms taps.
+# tests/fx_check.py:
+#   1500 no effects: a tap, then silence by 2.3 s
+#   2500 slot 1 DELAY (TYPE +1: TIME 70 = ~270 ms, FEEDBK 50, MIX 40); MIX up to 64 (dry and wet full); a tap at
+#        3000: echoes ~270 ms apart, each quieter
+#   5000 SYNC on (row B), TIME 1/8 at 120 BPM (250 ms); PING 127: a tap at 5500, the echoes left, right, left
+#   7500 slot 1 OFF (SHIFT + FX), slot 2 REVERB (SELECT +1, TYPE +1): a tap at 8000, a tail on both sides that
+#        differ, gone within ~3 s of RT (SIZE 80)
+#   12000 slot 1 DELAY again: the two in a row; a tap at 12500
+900 btn 3
+910 enc 3 -40
+920 enc 4 -40
+1000 btn 5
+1010 enc 3 -20
+1020 enc 4 -64
+1100 btn 7
+1200 shot
+1500 midi 0x90 57 100
+1550 midi 0x80 57 0
+2500 enc 2 1
+2600 enc 3 12
+2900 shot
+3000 midi 0x90 57 100
+3050 midi 0x80 57 0
+4900 btn 7
+5000 enc 2 1
+5100 enc 4 32
+5400 shot
+5500 midi 0x90 57 100
+5550 midi 0x80 57 0
+7400 btn 7
+7450 btndown 13
+7500 btn 7
+7550 btnup 13
+7600 enc 0 1
+7700 enc 2 2
+7900 shot
+8000 midi 0x90 57 100
+8050 midi 0x80 57 0
+10500 shot
+11800 enc 0 -1
+11900 enc 2 1
+12000 shot
+12500 midi 0x90 57 100
+12550 midi 0x80 57 0
+14000 shot
+16000 end

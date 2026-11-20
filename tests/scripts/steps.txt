@@ -1,0 +1,30 @@
+# Volna stage 5b: the arp's patterns. FM-1 ids: buttons 10 ARP (again: rows), 11 SEQ, 12 RUN [PLAY];
+# encoders 2..5 KNOB1..4. The chord comes over MIDI (A3 C4 E4): in SEQ the white keys are the steps.
+#   (the splash takes 0.7 s: buttons pressed meanwhile come as one edge, so nothing before 900)
+#   1500 RUN, ARP row C, PATTERN 2 (KNOB1; x.x.x.x...): 120 BPM 1/16 with every other step a pause: 4 notes a second
+#   3000 SEQ: step 1 picked; the white key of step 2 (G3) picks it, again switches it on:
+#        x x x . x . x . (9 of 16): 4.5 notes a second
+#   4000 step 1 (F3) picked, TYPE -> CHORD (KNOB1 +6): the first step plays the three at once (still one onset)
+#   5500 the notes let go: silent
+900 btn 12
+1000 btn 10
+1100 btn 10
+1200 btn 10
+1300 enc 2 2
+1500 midi 0x90 57 100
+1500 midi 0x90 60 100
+1500 midi 0x90 64 100
+2500 shot
+3000 btn 11
+3100 keys 0x4
+3150 keys 0
+3200 keys 0x4
+3250 keys 0
+3300 keys 0x1
+3350 keys 0
+3400 enc 2 6
+4000 shot
+5500 midi 0x80 57 0
+5500 midi 0x80 60 0
+5500 midi 0x80 64 0
+6500 end

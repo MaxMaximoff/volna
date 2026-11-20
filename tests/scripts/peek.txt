@@ -1,0 +1,11 @@
+# Volna (2026-11-16): a peek. FM-1 ids: buttons 2 OSC [FX], 4 FILT [ENV], 5 ENV [LFO]. OSC (900); ENV held (1500:
+# its page) and let go after 0.7 s (1900: OSC again); FILT tapped (2400: FILTER stays).
+700 btn 2
+900 shot
+1000 btndown 5
+1500 shot
+1700 btnup 5
+1900 shot
+2000 btn 4
+2400 shot
+2500 end

@@ -1,0 +1,39 @@
+# Volna (2026-11-15): the modifiers and the matrix's newer sources on the screen. FM-1 ids: button 6 MOD [EDIT]
+# (again: rows A B C D; C MATRIX, D MODIF), encoders 0 SELECT, 2..5 KNOB1..4; SETUP: SHIFT [REC] = 13 held + PATCH
+# [HOME] = 8, again: its rows (C: CTL W..Z). Slot 1: MOD1 -> PAN +40; modifier 1: LFO1 * WHEEL; modifier 2: ENV A
+# + CONST -20. Shots: 3000 the source list (MOD1 picked), 5500 MATRIX, 7600 the list of SRC B (WHEEL), 9800 MODIF,
+# 11800 modifier 2, 14000 SETUP row C. A3 held from 9000 with the wheel half up.
+1000 btn 6
+1100 btn 6
+1200 btn 6
+1300 enc 2 27
+3000 shot
+3100 enc 3 4
+3400 enc 4 1
+3700 enc 5 40
+5500 shot
+5600 btn 6
+5700 enc 2 1
+6000 enc 3 2
+6300 enc 4 9
+7600 shot
+8000 midi 0xB0 1 64
+9000 midi 0x90 57 100
+9800 shot
+9900 enc 0 1
+10000 enc 2 4
+10300 enc 4 0
+10400 enc 5 -10
+11800 shot
+12000 midi 0x80 57 0
+12100 btndown 13
+12200 btn 8
+12300 btnup 13
+12400 btndown 13
+12500 btn 8
+12600 btnup 13
+12700 btndown 13
+12800 btn 8
+12900 btnup 13
+14000 shot
+14100 end

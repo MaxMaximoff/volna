@@ -1,0 +1,32 @@
+# Volna stage 7a: unison (OSC row B: UNISON DETUNE SPREAD). FM-1 ids: buttons 2 OSC [FX], 3 MIX [SCL];
+# encoders 2..5 KNOB1..4. OSC1 a sine (WAVE 0), OSC2 and OSC3 off; A3 (57, 220 Hz) over MIDI. tests/uni_check.py:
+#   1500 UNISON 1: left = right, 220 Hz
+#   3000 UNISON 2, DETUNE 127 (+-100 cents), SPREAD 127: the left copy alone on the left (207.7 Hz), the right on the
+#        right (233.1 Hz)
+#   4500 UNISON 7, SPREAD 0: mono again (left = right), about as loud as one copy, no clipping
+#   6000 SPREAD 127: left and right differ
+950 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 2
+1200 btn 2
+1300 shot
+1500 midi 0x90 57 100
+2000 midi 0x80 57 0
+2100 enc 2 1
+2150 enc 3 40
+2700 enc 4 20
+2900 shot
+3000 midi 0x90 57 100
+3800 midi 0x80 57 0
+3900 enc 2 5
+3950 enc 4 -32
+4400 shot
+4500 midi 0x90 57 100
+5300 midi 0x80 57 0
+5400 enc 4 32
+5900 shot
+6000 midi 0x90 57 100
+6800 midi 0x80 57 0
+7000 end

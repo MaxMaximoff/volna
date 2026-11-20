@@ -1,0 +1,31 @@
+# Volna: FILTER, the effect (FX [GLO] = button 7, KNOB1 TYPE +8: OFF -> FILTER; row A TYPE MIX CUTOFF RESO, row B
+# FILTER SOURCE DEPTH RATE; FX again: the other row). The sound: noise alone (MIX = 3: the oscillators to 0, NOISE to
+# 127), the main filter open (FILT = 4: CUTOFF to 127). A3 (57) over MIDI. tests/fxfilter_check.py, the brightness as
+# zero crossings (filtered noise crosses about twice the cutoff a second):
+#   1500 dry noise: bright
+#   3000 FILTER, the defaults (LP24 587 Hz, resonance 70, an LFO ~0.56 Hz +-3.2 octaves): the brightness swings
+#   7500 SOURCE ENV: a hard note (velocity 127) opens it more than a soft one (25)
+#   after the last note: silence, every sample 0
+900 btn 3
+910 enc 2 -40
+920 enc 3 -40
+930 enc 4 -40
+940 enc 5 40
+1000 btn 4
+1010 enc 2 40
+1100 btn 7
+1500 midi 0x90 57 100
+2500 midi 0x80 57 0
+2600 enc 2 8
+3000 midi 0x90 57 100
+5000 shot
+7000 midi 0x80 57 0
+7100 btn 7
+7200 enc 3 3
+7500 midi 0x90 57 127
+8000 shot
+8500 midi 0x80 57 0
+8700 midi 0x90 57 25
+9300 shot
+9700 midi 0x80 57 0
+10800 end

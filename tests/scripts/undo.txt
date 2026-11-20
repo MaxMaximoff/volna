@@ -1,0 +1,20 @@
+# Volna (2026-11-16): INIT undone. FM-1 ids: button 2 OSC [FX], 13 SHIFT [REC]; encoder 3 KNOB2 (WAVE). OSC 1's WAVE
+# +20 (1000); SHIFT held (1200: the help, INIT on OSC); OSC: INIT (1500: the help says UNDO: OSC 1, WAVE 0 in the
+# cell); OSC again: UNDO (1800: WAVE back, INIT on the key); again: INIT (2100); SHIFT let go, WAVE +4 (2600: the help
+# held again says INIT, not UNDO: changed since).
+700 btn 2
+800 enc 3 20
+1100 btndown 13
+1200 shot
+1300 btn 2
+1500 shot
+1600 btn 2
+1800 shot
+1900 btn 2
+2100 shot
+2200 btnup 13
+2300 enc 3 4
+2500 btndown 13
+2600 shot
+2700 btnup 13
+2800 end

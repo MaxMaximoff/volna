@@ -1,0 +1,21 @@
+# Volna (2026-11-16): the smaller things on the screen. FM-1 ids: buttons 2 OSC [FX] (rows A B C D), 6 MOD [EDIT],
+# 8 PATCH [HOME]; encoders 2..5 KNOB1..4. OSC1 row B: KEYTRK 60 % (2000); row C: BEND +12 (2600); row D: LIMIT ON
+# (3200); LFO 1 row B: FADE OUT (4000); PATCH row B: G.MODE GLISS (5000).
+900 btn 2
+1000 enc 5 -4
+2000 shot
+2100 btn 2
+2200 enc 5 37
+2600 shot
+2700 btn 2
+2800 enc 2 1
+3200 shot
+3300 btn 6
+3400 btn 6
+3500 enc 4 1
+4000 shot
+4100 btn 8
+4200 btn 8
+4300 enc 3 2
+5000 shot
+5100 end

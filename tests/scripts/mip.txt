@@ -1,0 +1,16 @@
+# Volna stage 8: the mip-maps in the firmware. FM-1 ids: buttons 3 MIX [SCL], 4 FILT [ENV]; encoders 2..5 KNOB1..4.
+# OSC1 a sawtooth (BASIC wave 63), OSC2 and OSC3 off, filter 1 OFF (FILT, row B, TYPE down to its first).
+# Over MIDI: C7 (96, 2093 Hz) at 1500, then C8 (108, 4186 Hz) at 3000, held a second each. tests/mip_check.py
+# measures the aliasing: the energy off the note's harmonics (through level 0 alone it would be -14 dB and -10 dB)
+900 enc 3 40
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 4
+1200 btn 4
+1300 enc 2 -10
+1500 midi 0x90 96 100
+2500 midi 0x80 96 0
+3000 midi 0x90 108 100
+4000 midi 0x80 108 0
+4500 end

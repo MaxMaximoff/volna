@@ -1,0 +1,19 @@
+# Volna (2026-11-15): hard sync on the screen. FM-1 ids: buttons 8 PATCH [HOME], 2 OSC [FX] (again: rows A B C);
+# encoders 0 SELECT, 6 PRESETS. Factory 06 SYNC LEAD (OSC2 synced to OSC3). Shots: 2200 OSC2 row C (FM SRC, FM AMT,
+# SYNC ON; "SYNC < OSC3" over its waves), 2600 OSC1 row C (no SYNC: OSC2's only), 3000 OSC2 row A. A3 from 1500.
+900 btn 8
+1000 enc 6 6
+1300 btn 2
+1350 enc 0 1
+1400 btn 2
+1450 btn 2
+1500 midi 0x90 57 100
+2200 shot
+2300 enc 0 -1
+2600 shot
+2700 enc 0 1
+2750 btn 2
+2775 btn 2
+3000 shot
+3100 midi 0x80 57 0
+3300 end

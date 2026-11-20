@@ -1,0 +1,26 @@
+# Volna: the matrix's 16th slot. FM-1 ids: buttons 3 MIX, 6 MOD (three presses: MATRIX), 8 PATCH, 9 SAVE; encoders
+# 0 SELECT, 2..5 KNOB1..4, 6 PRESETS. OSC2 and OSC3 off; slot 16 (SELECT +15): LFO 1 (a ~1 Hz sine) -> PITCH +63.
+# A3 held 2000 .. 4000: its pitch swings by two octaves (tests/slot16_check.py). SAVE to 05, PRESETS away and back:
+# A3 again 6500 .. 8500, the slot came back with the patch.
+900 btn 3
+910 enc 3 -40
+920 enc 4 -40
+1000 btn 6
+1050 btn 6
+1100 btn 6
+1150 enc 0 15
+1400 enc 2 1
+1500 enc 3 1
+1600 enc 5 63
+2000 midi 0x90 57 100
+4000 midi 0x80 57 0
+4100 shot
+4300 btn 9
+4400 enc 2 5
+4600 btn 9
+5200 enc 6 -1
+5600 enc 6 1
+6000 shot
+6500 midi 0x90 57 100
+8500 midi 0x80 57 0
+9000 end

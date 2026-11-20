@@ -1,0 +1,42 @@
+# Volna: a SAVE waiting for silence while another patch is loaded. FM-1 ids: buttons 3 MIX, 4 FILT, 8 PATCH, 9 SAVE;
+# encoders 2..5 KNOB1..4, 6 PRESETS. tests/savewait_check.py:
+#   1100 PRESETS +1: 01 SOFT PAD; MIX: the oscillators off, NOISE up; FILT: CUTOFF up (white noise: no other
+#        sound here crosses zero as often); A3 1500 .. 2700 (the edit)
+#   3000 SAVE: asking; KNOB1 +5: to 06; SAVE: waiting (SOFT PAD's reverb still sounds)
+#   3300 PRESETS +1 meanwhile: 02 SUPERSAW (a reverb of its own: the tail goes on, the write comes when it dies out)
+#   6000 A3 on SUPERSAW to 7200; 7400 PRESETS +4: 06; A3 7800 .. 9000: the edit as saved, not SUPERSAW
+#   9200 SAVE: asking; KNOB1 +1: to 07; SAVE: waiting (06's tail); 9400 PRESETS +1: 07 itself, before the write (its
+#        old sound, INIT, no effects: the tail stops, the write comes now); A3 10000 .. 11200: the edit, not INIT
+900 btn 8
+1100 enc 6 1
+1200 btn 3
+1210 enc 2 -40
+1220 enc 3 -40
+1230 enc 4 -40
+1240 enc 5 40
+1300 btn 4
+1320 enc 2 40
+1500 midi 0x90 57 100
+2700 midi 0x80 57 0
+3000 btn 9
+3050 enc 2 5
+3100 btn 9
+3200 shot
+3300 enc 6 1
+3400 shot
+6000 midi 0x90 57 100
+7200 midi 0x80 57 0
+7400 enc 6 4
+7500 btn 8
+7600 shot
+7800 midi 0x90 57 100
+9000 midi 0x80 57 0
+9200 btn 9
+9250 enc 2 1
+9300 btn 9
+9400 enc 6 1
+9500 shot
+10000 midi 0x90 57 100
+11200 midi 0x80 57 0
+11500 shot
+12000 end

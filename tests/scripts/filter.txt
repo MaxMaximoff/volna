@@ -1,0 +1,39 @@
+# Volna stage 3: the filters. FM-1 ids: buttons 4 FILT [ENV] (rows A B C since 2026-11-16: from B two presses back to
+# A), 5 ENV [LFO]; encoders 0 SELECT, 2..5 KNOB1..4.
+# A chord through the default low pass (its envelope opens it, then it settles); the FILTER page while it sounds
+# (the voices' cutoffs as ticks); the cutoff swept down and up under a held note, the resonance up; row B: the band
+# pass (a shot), back to the low pass; filter 2 as a high pass near 400 Hz after it; the filter envelope (ENV,
+# SELECT: FLT) with a slow attack, under a chord
+500 btn 4
+600 keys 0x4890
+900 shot
+1200 keys 0
+1600 keys 0x10
+1700 enc 2 -20
+1900 enc 2 -20
+2100 enc 2 -10
+2300 enc 3 40
+2500 enc 2 30
+2700 enc 2 20
+2900 shot
+3100 keys 0
+3300 btn 4
+3400 enc 2 2
+3500 shot
+3550 enc 2 -2
+3600 enc 0 1
+3700 enc 2 6
+3900 btn 4
+3950 btn 4
+4000 enc 2 -32
+4100 shot
+4200 keys 0x890
+4900 keys 0
+5300 btn 5
+5400 enc 0 1
+5500 enc 2 40
+5600 enc 3 10
+5700 keys 0x4890
+5900 shot
+6600 keys 0
+7400 end

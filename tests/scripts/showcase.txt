@@ -1,0 +1,74 @@
+# Volna's screens for the site's page (web/src/fw/volna/shots/): the factory sounds playing, a page each.
+# APP_VER=0.4 tests/run_host.sh tests/scripts/showcase.txt, then web/scripts/volna-shots.mjs picks them up.
+# FM-1 ids: buttons 2 OSC, 3 MIX, 4 FILT, 5 ENV, 6 MOD, 7 FX, 8 PATCH, 9 SAVE, 10 ARP; encoders 0 SELECT, 2..5 KNOB1..4.
+#   500 the splash
+#   01 SOFT PAD, a chord: 2600 OSC (the table drifts with LFO 1), 3600 FX slot 2 (the plate), 4400 ENV (the voices'
+#      dots), 5000 MIX A (NOISE turned up for the picture), 5600 MIX C (RING turned up)
+#   04 FILT, a chord: 6800 FILTER 2 (the driven band pass), 7300 MIX B (OSC1 between the two filters, PAR; MIX
+#      comes back on row C, as it was left: C, A, B),
+#      8000 MOD MATRIX
+#   03 BASS-1, a held note: 9300 ARP (its own groove), 9900 FX slot 1 (TUBE)
+#   02 SUPERSAW, a chord: 10900 OSC (seven copies), 11300 PATCH, 11700 SAVE
+500 shot
+1000 midi 0xC0 1 0
+1100 midi 0x90 60 96
+1110 midi 0x90 64 90
+1120 midi 0x90 67 92
+1130 midi 0x90 71 88
+2600 shot
+2700 btn 7
+2800 enc 0 1
+3600 shot
+3700 btn 5
+4400 shot
+4500 btn 3
+4600 enc 5 12
+5000 shot
+5100 btn 3
+5150 btn 3
+5200 enc 2 20
+5600 shot
+5700 midi 0x80 60 0
+5710 midi 0x80 64 0
+5720 midi 0x80 67 0
+5730 midi 0x80 71 0
+5800 midi 0xC0 4 0
+5900 midi 0x90 48 100
+5910 midi 0x90 55 96
+5920 midi 0x90 63 92
+6000 btn 4
+6100 enc 0 1
+6800 shot
+6900 btn 3
+6950 btn 3
+7000 btn 3
+7300 shot
+7400 btn 6
+7450 btn 6
+7500 btn 6
+8000 shot
+8100 midi 0x80 48 0
+8110 midi 0x80 55 0
+8120 midi 0x80 63 0
+8300 midi 0xC0 3 0
+8400 midi 0x90 36 110
+8500 btn 10
+9300 shot
+9400 btn 7
+9500 enc 0 -1
+9900 shot
+10000 midi 0x80 36 0
+10200 midi 0xC0 2 0
+10300 midi 0x90 57 100
+10310 midi 0x90 64 96
+10320 midi 0x90 69 92
+10400 btn 2
+10900 shot
+11000 btn 8
+11300 shot
+11400 btn 9
+11700 shot
+11800 midi 0x80 57 0
+11810 midi 0x80 64 0
+11820 midi 0x80 69 0
+12100 end

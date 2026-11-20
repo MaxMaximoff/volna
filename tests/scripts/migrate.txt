@@ -1,0 +1,3 @@
+# Volna (2026-11-15): nothing to play: with VOLNA_V1=1 the host writes patches of the format 1 at start and checks
+# that patch_migrate moves them to the format 2 as saved (tests/host.c, volna.c host_v1_*)
+100 end

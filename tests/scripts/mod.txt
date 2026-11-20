@@ -1,0 +1,31 @@
+# Volna stage 4a: the modulation. FM-1 ids: buttons 3 MIX [SCL], 4 FILT [ENV], 6 MOD [EDIT]; encoders 0 SELECT (MOD again: rows A B C D, C the MATRIX, D MODIF since 2026-11-15: from C two presses back to A),
+# 2..5 KNOB1..4. OSC2 and OSC3 off, the filter as it is (a low pass ~830 Hz), A3 held from 3300; LFO 1 a square (~1 Hz, free, shared).
+# Slot 1: LFO 1 -> PITCH +63 (+-12 semitones): the pitch jumps two octaves each half second (3400 .. 5400);
+# then -> CUTOFF (5500: GROUP OSC -> FILT, CUT its first): the brightness swings (6000 .. 8000); then -> WAVE (8100:
+# GROUP back to OSC, DEST +4): the table
+# position swings past both ends of the table, kept inside (8600 .. 10600). (The host turns an encoder a detent at a
+# time: the next step waits for the last.)
+900 btn 3
+1000 enc 3 -40
+1010 enc 4 -40
+2000 btn 6
+2100 enc 2 2
+2200 btn 6
+2250 btn 6
+2400 enc 2 1
+2500 enc 3 1
+2600 enc 5 63
+3300 keys 0x10
+4500 shot
+5000 btn 6
+5100 btn 6
+5200 shot
+5300 btn 6
+5350 btn 6
+5500 enc 3 2
+7000 shot
+8100 enc 3 -2
+8200 enc 4 4
+9000 shot
+10700 keys 0
+11200 end

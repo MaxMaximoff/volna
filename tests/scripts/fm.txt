@@ -1,0 +1,21 @@
+# Volna (2026-11-15): FM on the screen. FM-1 ids: buttons 8 PATCH [HOME], 2 OSC [FX] (again: rows A B C, C FM),
+# 6 MOD [EDIT]; encoders 2..5 KNOB1..4, 6 PRESETS. Factory 05 FM EP: OSC1 modulated by OSC2 (FM SRC OSC2, AMT 34),
+# ENV 3 -> FM1 +40. Shots: 2000 OSC row A ("FM < OSC2 34" over the waves), 2600 row C (FM SRC, FM AMT), 3400 the
+# list of FM SRC, 5600 MATRIX (slot 1 ENV 3 > FM1). A3 held from 1500.
+900 btn 8
+1000 enc 6 5
+1400 btn 2
+1500 midi 0x90 57 100
+2000 shot
+2100 btn 2
+2200 btn 2
+2600 shot
+2700 enc 2 1
+3400 shot
+3500 enc 2 -1
+3600 midi 0x80 57 0
+4000 btn 6
+4100 btn 6
+4200 btn 6
+5600 shot
+5700 end

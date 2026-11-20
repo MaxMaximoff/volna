@@ -1,0 +1,20 @@
+# Volna: the envelopes' A D S R as the matrix's destinations. FM-1 ids: buttons 3 MIX [SCL], 6 MOD [EDIT]; encoders
+# 0 SELECT, 2..4 KNOB1..3. OSC2 and OSC3 off. Slot 1: VELO -> A.ATK +40 (DEST 20): the harder the note, the slower
+# its attack (AMP's ATTACK 2 + up to 80). MATRIX: KNOB2 the group (+5: ENV, A.ATK its first), KNOB4 AMOUNT. A3 over MIDI: soft (30) at 2500, hard (127) at 3500.
+900 btn 3
+910 enc 3 -40
+920 enc 4 -40
+1400 btn 6
+1450 btn 6
+1460 btn 6
+1500 enc 2 6
+1600 enc 3 5
+1650 enc 4 0
+1900 enc 5 40
+1700 shot
+2400 shot
+2500 midi 0x90 57 30
+3300 midi 0x80 57 0
+3500 midi 0x90 57 127
+4500 midi 0x80 57 0
+5000 end

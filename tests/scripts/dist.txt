@@ -1,0 +1,23 @@
+# Volna stage 7b: DIST (FX [GLO] = button 7, KNOB1 TYPE +3: OFF -> DIST; FX again: row B, KNOB1 SHAPE). OSC1 a
+# sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). A3 (57, 220 Hz) over MIDI. tests/dist_check.py measures harmonics:
+#   1500 no effect: a sine (no 2nd, no 3rd harmonic to speak of)
+#   3000 DIST, SOFT x 16 (the defaults): the 3rd harmonic up, no 2nd (symmetric); about as loud (LEVEL 40)
+#   4500 SHAPE TUBE: the 2nd harmonic too
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1500 midi 0x90 57 100
+2300 midi 0x80 57 0
+2500 enc 2 3
+3000 midi 0x90 57 100
+3800 midi 0x80 57 0
+3900 btn 7
+4000 enc 2 3
+4500 midi 0x90 57 100
+4600 shot
+5300 midi 0x80 57 0
+5400 btn 7
+6600 shot
+7000 end

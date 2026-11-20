@@ -1,0 +1,19 @@
+# Volna: the OSC picture follows the matrix's WAVE. FM-1 ids: buttons 6 MOD [EDIT] (three presses: MATRIX), 2 OSC [FX];
+# encoders 2..5 KNOB1..4 (MATRIX: SOURCE, GROUP, DEST, AMOUNT). Slot 1: LFO 1 (a ~1 Hz sine) -> WAV1 +40. A3 held over MIDI; the OSC page shot at 2400 and
+# 2650 ms (a quarter of the LFO apart): the picture differs (tests/wavemod_check.py), and with the note let go it
+# stands still (3600, 3900)
+900 btn 6
+950 btn 6
+1000 btn 6
+1100 enc 2 1
+1200 enc 3 1
+1250 enc 4 5
+1300 enc 5 40
+1800 btn 2
+2000 midi 0x90 57 100
+2400 shot
+2650 shot
+3000 midi 0x80 57 0
+3600 shot
+3900 shot
+4200 end

@@ -1,0 +1,8 @@
+# Volna (2026-11-16): INIT as it is now, the plainest sound: OSC1 alone on wave 0 (BASIC's sine), OSC2 and OSC3 silent.
+# Built without VOLNA_INIT1 (tests/run_tests.sh). 00 INIT at the start; A3 (57, 220 Hz) over MIDI, 1000..2000 ms; the
+# OSC page (the default) at 1500. tests/init_check.py: a sine at 220 Hz, nothing else (OSC2 7 cents up, OSC3 an octave
+# down: gone), left = right.
+1000 midi 0x90 57 100
+1500 shot
+2000 midi 0x80 57 0
+2600 end

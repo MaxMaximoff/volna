@@ -1,0 +1,21 @@
+# Volna (2026-11-16): MOD held on another page makes a slot. FM-1 ids: buttons 4 FILT [ENV], 6 MOD [EDIT]; encoders 0
+# SELECT, 2 KNOB1 (CUTOFF). FILTER (700); MOD held (1100: what a knob does); KNOB1 +20 (1500: SLOT 1 LFO1 > CUT1 +20);
+# SELECT +1 (1800: LFO2); MOD let go (2100: FILTER stays); MOD tapped (2500: MATRIX, slot 1 picked); FILTER, MOD held
+# and let go untouched (3300: MOD's page).
+600 btn 4
+700 shot
+900 btndown 6
+1100 shot
+1200 enc 2 20
+1500 shot
+1600 enc 0 1
+1800 shot
+1900 btnup 6
+2100 shot
+2200 btn 6
+2500 shot
+2600 btn 4
+2800 btndown 6
+3000 btnup 6
+3300 shot
+3400 end

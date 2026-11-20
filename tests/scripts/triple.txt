@@ -1,0 +1,10 @@
+# Volna (2026-11-16): TRIPLE on the screen. FM-1 ids: button 7 FX [GLO] (again: row B), encoders 2..5 KNOB1..4.
+# Slot 1 TRIPLE (KNOB1 +9): its row A (RATE, DEPTH) with the picture (2200); row B: S&H 80, DRIVE 100 (3800).
+900 btn 7
+1000 enc 2 9
+2200 shot
+2300 btn 7
+2400 enc 3 40
+2500 enc 4 35
+3800 shot
+3900 end

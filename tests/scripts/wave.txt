@@ -1,0 +1,17 @@
+# Volna stage 1: hold C4 and sweep the table with KNOB2 (encoder 3; KNOB1 is TABLE) from wave 0 (sine) to 63 (saw) and back
+1000 keys 0x80
+1300 shot
+1400 enc 3 8
+1700 enc 3 8
+2000 enc 3 8
+2300 shot
+2300 enc 3 8
+2600 enc 3 8
+2900 enc 3 8
+3200 enc 3 8
+3500 enc 3 8
+3800 shot
+4100 enc 3 -64
+5100 shot
+5300 keys 0
+5600 end

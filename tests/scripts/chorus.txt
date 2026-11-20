@@ -1,0 +1,24 @@
+# Volna stage 7b: CHORUS (FX [GLO] = button 7, KNOB1 TYPE +4: OFF -> CHORUS; FX again: row B, KNOB1 MODE). OSC1 a
+# sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). A3 (57, 220 Hz) over MIDI, held. tests/chorus_check.py:
+#   1500 no effect: one steady pitch, the sides the same
+#   3000 CHORUS (the defaults, MIX 64: dry and wet full): the wet copy's pitch wobbles (the sum beats), the sides differ
+#   6000 FLANGER, FEEDBK +40: the sides differ, it still sounds (no runaway, no silence)
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1500 midi 0x90 57 100
+2400 midi 0x80 57 0
+2500 enc 2 4
+2600 enc 3 7
+3000 midi 0x90 57 100
+4500 shot
+5400 midi 0x80 57 0
+5500 btn 7
+5600 enc 2 1
+5700 enc 3 20
+6000 midi 0x90 57 100
+7600 shot
+8000 midi 0x80 57 0
+8500 end

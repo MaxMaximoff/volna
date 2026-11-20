@@ -1,0 +1,33 @@
+# Volna: VELO, the velocity's reach (ENV row C; buttons 5 ENV [LFO], twice more: row C; encoder 0 SELECT, 2 KNOB1).
+# A3 over USB MIDI, soft (30) then hard (120), 0.2 s each, under: AMP VELO 63 (the default: soft is quiet), 0 (the
+# same), -63 (soft is loud); then FLT VELO 63 with AMP VELO 0: the same level, the hard note brighter.
+# OSC2 and OSC3 off first (MIX [SCL] KNOB2, KNOB3): OSC2's +7 cents beat against OSC1 and would move the level
+500 btn 3
+510 enc 3 -40
+520 enc 4 -40
+1000 midi 0x90 57 30
+1200 midi 0x80 57 0
+1300 midi 0x90 57 120
+1500 midi 0x80 57 0
+1600 btn 5
+1610 btn 5
+1615 btn 5
+1620 enc 2 -21
+2000 midi 0x90 57 30
+2200 midi 0x80 57 0
+2300 midi 0x90 57 120
+2500 midi 0x80 57 0
+2600 enc 2 -21
+3000 midi 0x90 57 30
+3200 midi 0x80 57 0
+3300 midi 0x90 57 120
+3500 midi 0x80 57 0
+3600 enc 2 21
+3610 enc 0 1
+3620 enc 2 21
+4000 midi 0x90 57 30
+4200 midi 0x80 57 0
+4300 midi 0x90 57 120
+4450 shot
+4500 midi 0x80 57 0
+4900 end

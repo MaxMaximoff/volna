@@ -1,0 +1,20 @@
+# Volna (2026-11-16): the filters' DRIVE curves on the screen. FM-1 ids: button 4 FILT [ENV] (again: rows A B C),
+# encoders 2..5 KNOB1..4. Filter 1: row B DRIVE 64 (KNOB3), row C CURVE (KNOB1) from SOFT: the list (2200), SOFT
+# (3600), RECTIFY (+3: 6000), SINE (+4: 8400), OSC1 MOD (+1: 10800); filter 2 (SELECT), DRIVE 0 (12800: dim).
+900 btn 4
+1000 btn 4
+1100 enc 4 16
+1200 btn 4
+1300 enc 2 1
+1400 enc 2 -1
+2200 shot
+3600 shot
+3700 enc 2 3
+6000 shot
+6100 enc 2 4
+8400 shot
+8500 enc 2 1
+10800 shot
+10900 enc 0 1
+12800 shot
+12900 end

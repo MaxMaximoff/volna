@@ -1,0 +1,33 @@
+# Volna's interface (docs/ui/UI.md): every page once, a screen each. FM-1 ids: buttons 2 OSC [FX], 3 MIX [SCL],
+# 4 FILT [ENV], 5 ENV [LFO], 8 PATCH [HOME], 13 SHIFT [REC]; encoders 0 SELECT, 1 ALGORITHM (MORPH), 2..5 KNOB1..4
+500 shot
+1000 keys 0x4890
+1100 enc 3 6
+1300 shot
+1400 enc 0 1
+1600 shot
+1700 btn 3
+1800 enc 5 4
+1900 shot
+2000 btn 3
+2100 enc 3 -20
+2200 shot
+2300 btn 5
+2400 enc 3 10
+2500 shot
+2600 keys 0
+2750 shot
+2900 btn 4
+3000 shot
+3100 btn 8
+3200 enc 1 12
+3300 shot
+3400 btndown 13
+3500 shot
+3600 btn 8
+3700 btnup 13
+3800 shot
+3900 btn 1
+4000 btn 2
+4100 shot
+4300 end

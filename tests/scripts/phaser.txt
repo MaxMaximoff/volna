@@ -1,0 +1,27 @@
+# Volna: PHASER (FX [GLO] = button 7, KNOB1 TYPE +5: OFF -> PHASER; FX again: row B, FREQ FEEDBK STAGES WIDTH). OSC1
+# a sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). C5 (72, 523 Hz: the phaser's starting centre) over MIDI, held.
+# tests/phaser_check.py measures its level over time:
+#   1500 no effect: steady
+#   3500 PHASER (the defaults: 4 stages, +-2 octaves at ~0.4 Hz, feedback +0.38): the notches go by, the level swings;
+#        the sides apart (WIDTH 64); no clicks
+#   8000 FEEDBK +63 (0.95), STAGES 8: still swinging, bounded, no clicks
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1500 midi 0x90 72 100
+3000 midi 0x80 72 0
+3100 enc 2 5
+3200 shot
+3500 midi 0x90 72 100
+6000 shot
+7500 midi 0x80 72 0
+7600 btn 7
+7700 enc 3 30
+7800 enc 4 2
+7900 shot
+8000 midi 0x90 72 100
+10000 shot
+11000 midi 0x80 72 0
+11500 end

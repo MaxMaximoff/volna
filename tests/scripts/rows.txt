@@ -1,0 +1,24 @@
+# Volna (2026-11-16): SHIFT [REC] = 13 held + SELECT (encoder 0) pages a section's rows (clamped at the ends), the page
+# on the screen as soon as SELECT turns (SHIFT's help before). FM-1 ids: buttons 2 OSC [FX], 6 MOD [EDIT].
+# OSC (on row B, as the host leaves it): SHIFT's help (1100, SELECT: ROWS); SELECT +2 under SHIFT: row D, the last
+# (1500); +5 more: still D (1900); SHIFT
+# let go, SELECT +1: OSC 2 on row D, as before (2400); MOD: SHIFT + SELECT -1 from row A stays on A (2900), +3: row D,
+# MODIF (3400).
+900 btn 2
+1000 btndown 13
+1100 shot
+1200 enc 0 2
+1500 shot
+1600 enc 0 5
+1900 shot
+2000 btnup 13
+2100 enc 0 1
+2400 shot
+2500 btn 6
+2600 btndown 13
+2700 enc 0 -1
+2900 shot
+3000 enc 0 3
+3400 shot
+3500 btnup 13
+3600 end

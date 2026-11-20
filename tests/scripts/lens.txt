@@ -1,0 +1,44 @@
+# Volna: the screen ideas from the OSC mockup (Design canvas "FM-1 - макет экрана OSC"): the value lens, the wave's base
+# and live, the cells' live marks, the footer (OSC levels, MIDI coming in, the arp's tempo, the amber *).
+# FM-1 ids: buttons 2 OSC, 3 MIX, 4 FILT, 6 MOD, 10 ARP; encoders 0 SELECT, 2..5 KNOB1..4.
+#   1000 OSC: SEMI +7 (the lens: PERFECT 5TH, C4 > G4); 1600 FINE -10 (the lens in cents, A4 in Hz)
+#   2400 MIX: OSC3 off (its tab crossed out on OSC)
+#   2700 MOD MATRIX: LFO 1 -> WAV1 +40, slot 2 LFO 2 -> CUT1 +30; A3 held over MIDI from 3600
+#   4400 OSC: the wave, base and live, "W24 > ..", the WAVE cell's live mark; 5200 FILT: the CUTOFF cell's mark;
+#   5600 RESO turned (no lens: the response moves, Q white in the header)
+#   6600 ARP on (RUN), TEMPO turned (the lens, the tempo in the footer)
+1000 enc 4 7
+1300 shot
+1600 enc 5 -10
+1900 shot
+2400 btn 3
+2410 enc 4 -40
+2700 btn 6
+2750 btn 6
+2800 btn 6
+2900 enc 2 1
+3000 enc 3 1
+3050 enc 4 5
+3200 enc 5 40
+3300 enc 0 1
+3400 enc 2 2
+3500 enc 3 3
+3550 enc 4 1
+3600 midi 0x90 57 100
+3650 enc 5 30
+4400 btn 2
+4900 shot
+5200 btn 4
+5450 shot
+5600 enc 3 20
+5800 shot
+6400 midi 0x80 57 0
+6600 btn 12
+6700 btn 10
+6750 btn 10
+6800 enc 2 4
+7000 shot
+7100 midi 0x90 57 100
+7150 shot
+8600 shot
+8700 end

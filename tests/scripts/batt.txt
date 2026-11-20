@@ -1,0 +1,19 @@
+# Volna (2026-11-16): the battery on the SETUP page (top right; the page redraws every half second, so each shot is
+# 0.6 s after its reading). SETUP: SHIFT [REC] = 13 held + PATCH [HOME] = 8 (after the splash). Before the first
+# "batt": nothing (1200). Raw readings: 640, full, 3 bars (1900); 575, 2 bars (2600); 545, 1 bar, amber (3300); 520,
+# empty, red (4000); 600 with a USB host: "USB" under it, 3 bars (4700). No number under the battery.
+900 btndown 13
+1000 btn 8
+1100 btnup 13
+1200 shot
+1300 batt 640
+1900 shot
+2000 batt 575
+2600 shot
+2700 batt 545
+3300 shot
+3400 batt 520
+4000 shot
+4100 batt 600 1
+4700 shot
+4800 end

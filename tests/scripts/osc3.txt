@@ -1,0 +1,24 @@
+# Volna: three oscillators. The defaults (W24 / W40 +7c / W12 -12 st) on a C-E-G chord; then oscillator 3 muted,
+# oscillator 2 moved to wave 60 and detuned to +27 cents under a held C4; then oscillator 3 back at full level an
+# octave up (+12 st)
+1000 keys 0x4880
+1600 shot
+2000 keys 0
+2100 enc 3 -10
+2200 btn 3
+2300 enc 4 -32
+2350 btn 2
+2400 enc 0 1
+2500 keys 0x80
+2700 shot
+2800 enc 3 20
+3200 enc 5 20
+3600 shot
+3800 enc 0 1
+3850 btn 3
+3900 enc 4 32
+3950 btn 2
+4000 enc 4 24
+4200 shot
+4600 keys 0
+4900 end

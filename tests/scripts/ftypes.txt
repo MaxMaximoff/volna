@@ -1,0 +1,20 @@
+# Volna (2026-11-16): the filter types on the screen. FM-1 ids: button 4 FILT [ENV] (again: row B), encoders 2..5
+# KNOB1..4. Filter 1 at RESO 100 (KNOB2), then TYPE (row B, KNOB1) from LP12: NOTCH24 (+5), NOTCH12, COMB+, COMB-,
+# PPG LP; a shot of each, the last turn's list at 2300. A3 held from 1500.
+900 btn 4
+1000 enc 3 38
+1300 btn 4
+1400 enc 2 5
+1500 midi 0x90 57 100
+2300 shot
+4000 shot
+4100 enc 2 1
+6400 shot
+6500 enc 2 1
+8800 shot
+8900 enc 2 1
+11200 shot
+11300 enc 2 1
+13600 shot
+13700 midi 0x80 57 0
+13800 end

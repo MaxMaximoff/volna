@@ -1,0 +1,19 @@
+# Volna: the voices' limit (engine/poly.h), run with -DVOLNA_POLY_DROP_MS=2300 on today's INIT (a sine).
+# Four notes held (C4 E4 G4 B4); at 2300 the limit drops to 3 (on the FM-1: a heavy sound): the oldest held, C4,
+# fades out at once and its voice is free. D5 then: with 3 sounding it must not take that free voice: it steals the
+# oldest held, E4 (without the limit E4 would sound on).
+1000 midi 0x90 60 100
+1300 midi 0x90 64 100
+1600 midi 0x90 67 100
+1900 midi 0x90 71 100
+2700 midi 0x90 74 100
+2900 btndown 13
+2950 btn 8
+3000 btnup 13
+3200 shot
+3300 midi 0x80 60 0
+3300 midi 0x80 64 0
+3300 midi 0x80 67 0
+3300 midi 0x80 71 0
+3300 midi 0x80 74 0
+3900 end

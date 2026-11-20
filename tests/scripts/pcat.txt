@@ -1,0 +1,12 @@
+# Volna (2026-11-16): a patch's category. FM-1 ids: button 8 PATCH [HOME] (again: row B), encoders 2..5 KNOB1..4, 6
+# PRESETS. 05 FM EP (KEYS on its card, 1500); row B: CATEGORY's list turned to PERC (2600); 06 SYNC LEAD (LEAD, 4200).
+900 btn 8
+1000 enc 6 5
+1500 shot
+1600 btn 8
+1700 enc 4 4
+2600 shot
+2700 btn 8
+2800 enc 6 1
+4200 shot
+4300 end

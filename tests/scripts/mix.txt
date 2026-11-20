@@ -1,0 +1,36 @@
+# Volna: the mixer's noise, colour, ring and balance can be heard. FM-1 ids: buttons 3 MIX [SCL] (again: rows
+# A B C), 4 FILT [ENV]; encoders 2..5 KNOB1..4. A held note (key 4 = A3), 0.5 s a step:
+#   1000 the default sound             1500 NOISE up to 127 (row A)     2000 the oscillators down to 0 (noise alone)
+#   2500 COLOR down to 0 (row C)       3000 COLOR back, RING to 127, the oscillators back, no noise
+#   3500 the filter open (CUTOFF 127)  4000 RING to 0: the oscillators alone through the open filter
+#   4500 the filter nearly shut        5000 BAL O1 to F2 (row B): with filter 2 off, O1 skips the filters
+500 keys 0x10
+1500 btn 3
+1510 enc 5 40
+2000 enc 2 -40
+2010 enc 3 -40
+2020 enc 4 -40
+2500 btn 3
+2510 btn 3
+2520 enc 4 -40
+3000 enc 4 40
+3010 enc 2 40
+3020 btn 3
+3030 enc 2 40
+3040 enc 3 40
+3050 enc 4 40
+3060 enc 5 -40
+3500 btn 4
+3510 enc 2 40
+4000 btn 3
+4010 btn 3
+4020 btn 3
+4030 enc 2 -40
+4500 btn 4
+4510 enc 2 -60
+5000 btn 3
+5010 btn 3
+5020 btn 3
+5030 enc 2 60
+5300 shot
+5600 end

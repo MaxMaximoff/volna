@@ -1,0 +1,60 @@
+# Volna: the patch's own pattern (PATTERN OWN, 2026-11-15). FM-1 ids: buttons 8 PATCH, 9 SAVE, 10 ARP (again:
+# rows), 11 SEQ, 12 RUN; encoders 2..5 KNOB1..4, 6 PRESETS; in SEQ the white keys are the steps (0x4: step 2).
+# tests/own_check.py counts the arp's notes as they go out over MIDI (a tie sends none; an accent moves the velocity):
+#   1000 PRESETS +3: 03 BASS-1, its own groove "=pxqxp=pxpXqxp=p"; A2 held 1500 .. 5500 (120 BPM 1/16, two bars):
+#        13 notes a bar, velocities 100 100 68 100 100 100 100 100 127 68 100 100 100
+#   6000 PRESETS +1: 04 INIT; RUN; ARP row C, COPY +2: bank pattern 2 (x.x.x.x...) into OWN; a chord (A3 C4 E4)
+#        7000 .. 13000: 4 notes a second (7000 .. 9000)
+#   9100 SEQ (it edits OWN): the white key of step 2 picks it, again switches it on: 9 of 16, 4.5 a second
+#        (11000 .. 13000, a whole bar after the edit)
+#   13300 SAVE to 05 (KNOB1 +1): the bank's record and the tails' blob (the own steps); 14000 ARP, PATTERN -15:
+#        the bank's 2, as it was (4 a second), chord 14500 .. 16500
+#   16800 PRESETS -1, +1: 05 as saved, OWN with step 2 on: 4.5 a second, chord 17500 .. 19500
+900 btn 8
+1000 enc 6 3
+1500 midi 0x90 45 100
+5500 midi 0x80 45 0
+6000 enc 6 1
+6100 btn 12
+6200 btn 10
+6300 btn 10
+6400 btn 10
+6500 enc 2 2
+6600 shot
+7000 midi 0x90 57 100
+7000 midi 0x90 60 100
+7000 midi 0x90 64 100
+9100 btn 11
+9200 keys 0x4
+9250 keys 0
+9300 keys 0x4
+9350 keys 0
+9400 shot
+13000 midi 0x80 57 0
+13000 midi 0x80 60 0
+13000 midi 0x80 64 0
+13300 btn 9
+13350 enc 2 1
+13400 btn 9
+13900 shot
+14000 btn 10
+14100 enc 2 -2
+14120 enc 2 2
+14200 shot
+14500 midi 0x90 57 100
+14500 midi 0x90 60 100
+14500 midi 0x90 64 100
+16500 midi 0x80 57 0
+16500 midi 0x80 60 0
+16500 midi 0x80 64 0
+16800 enc 6 -1
+17000 enc 6 1
+17100 btn 10
+17200 shot
+17500 midi 0x90 57 100
+17500 midi 0x90 60 100
+17500 midi 0x90 64 100
+19500 midi 0x80 57 0
+19500 midi 0x80 60 0
+19500 midi 0x80 64 0
+20000 end

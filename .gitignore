@@ -1,0 +1,8 @@
+build/
+__pycache__/
+.DS_Store
+firmware/gen/wt_local.h
+local/
+backups/
+*.flash.bin
+*.fwsc

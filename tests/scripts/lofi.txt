@@ -1,0 +1,36 @@
+# Volna: LO-FI (FX [GLO] = button 7, KNOB1 TYPE +7: OFF -> LO-FI; row A TYPE MIX RATE BITS, row B TONE WOBBLE NOISE;
+# FX again: the other row). OSC1 a sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). C5 (72, 523 Hz) over MIDI.
+# tests/lofi_check.py:
+#   1500 dry: a clean sine
+#   3000 LO-FI, the defaults (13.8 kHz, 8.3 bits, WOBBLE 30, NOISE 20): about as loud; the pitch wobbles
+#   5500 WOBBLE 0: the fundamental about as loud as dry, the rest (the steps, the hiss) over -45 dB
+#   8200 RATE +60 (2.4 kHz): the hold's image at 2.4 kHz - 523 Hz is there
+#   11000 RATE back, BITS +25 (2.8 bits): the note holds, no window drops out (BITS against the note's own level)
+#   after the last note: silence, every sample 0 (no hiss between notes)
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1500 midi 0x90 72 100
+2500 midi 0x80 72 0
+2600 enc 2 7
+3000 midi 0x90 72 100
+4700 shot
+5000 midi 0x80 72 0
+5100 btn 7
+5200 enc 3 -15
+5500 midi 0x90 72 100
+7000 shot
+7500 midi 0x80 72 0
+7600 btn 7
+7700 enc 4 30
+8200 midi 0x90 72 100
+9500 midi 0x80 72 0
+10500 shot
+10600 enc 4 -30
+10700 enc 5 25
+11000 midi 0x90 72 100
+12500 midi 0x80 72 0
+13000 shot
+14500 end

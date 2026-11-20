@@ -1,0 +1,20 @@
+# Volna: TABLE (OSC row A, KNOB1; button 2 OSC [FX]; encoders 2 KNOB1, 3 KNOB2). OSC1 alone (OSC2
+# and OSC3 off on MIX [SCL]), a held A3: its table stepped 0 (BASIC) -> 1 -> 9 (past ANALOG at 6, as far as the
+# local tables go; without local/ it stops at ANALOG), then the wave swept through the table (KNOB2). A screen
+# at each step.
+300 btn 3
+310 enc 3 -40
+320 enc 4 -40
+900 btn 2
+1100 keys 0x10
+1300 shot
+1400 enc 2 1
+1700 shot
+1800 enc 2 8
+2100 shot
+2300 enc 3 30
+2700 shot
+2800 enc 3 -30
+3200 shot
+3300 keys 0
+3800 end

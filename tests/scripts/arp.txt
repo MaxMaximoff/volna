@@ -1,0 +1,33 @@
+# Volna stage 5a: the arpeggiator. FM-1 ids: buttons 10 ARP, 12 RUN [PLAY], 13 SHIFT [REC]; encoders 2..5
+# KNOB1..4. Each phase 2 s, its steps counted from the WAV by the test (tests/arp_check.py):
+#   1000 RUN, the ARP page, a chord (A3 C4 E4 G4) held: 120 BPM 1/16 = 8 steps a second
+#   3000 let go: it stops (ON)
+#   3500 row B (ARP again): TEMPO 120 -> 180 (KNOB1 +30 detents of 2), RATE 1/16 -> 1/8 (KNOB2 -3): 6 steps a second
+#   4000 the chord held                                             (screens: 4500 row B, 4600 the cheat sheet)
+#   6000 SHIFT + RUN: HOLD; the chord again, let go at 6500: it keeps playing to 8000
+#   8000 MIDI clock at 90 BPM from USB (and START): 1/8 at 90 = 3 steps a second, to 10000
+#   10000 RUN: off, silence
+500 btn 12
+600 btn 10
+1000 keys 0x4890
+1500 shot
+3000 keys 0
+3500 btn 10
+3510 enc 2 30
+3520 enc 3 -3
+4000 keys 0x4890
+4500 shot
+4600 btndown 13
+4700 shot
+4800 btnup 13
+6000 keys 0
+6100 btndown 13
+6200 btn 12
+6300 btnup 13
+6400 keys 0x4890
+6500 keys 0
+7500 shot
+8000 midi 0xFA 0 0
+8000 clock 90 75
+10000 btn 12
+11000 end

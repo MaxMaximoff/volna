@@ -1,0 +1,40 @@
+# Volna: the EQ, FX's third slot (FX [GLO] = button 7, SELECT +2: EQ; row A LOW MID HIGH Q, row B their frequencies;
+# FX again: the other row). OSC1 a sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). M.FREQ down 12 semitones (6 detents of
+# 2): B4 (71, 494 Hz); B4 over MIDI. tests/eq_check.py measures its level:
+#   1500 the EQ flat: dry
+#   3000 MID -12 dB: a quarter of dry (the bell at its frequency)
+#   4200 a screen: LOW +6, HIGH -4 as well, row B (the frequencies); then back to 0
+#   SAVE to 05 (M.FREQ lives past the bank's record: the tail blob is written too), PRESETS away and back:
+#   6500 the EQ came back with the patch, MID still -12 dB at B4 (at its starting 988 Hz it would be ~ -4 dB here)
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1150 enc 0 2
+1160 btn 7
+1170 enc 3 -6
+1180 btn 7
+1200 shot
+1500 midi 0x90 71 100
+2300 midi 0x80 71 0
+2500 enc 3 -12
+2600 shot
+3000 midi 0x90 71 100
+3800 midi 0x80 71 0
+4000 enc 2 6
+4050 enc 4 -4
+4100 btn 7
+4200 shot
+4300 btn 7
+4350 enc 2 -6
+4400 enc 4 4
+4500 btn 9
+4600 enc 2 5
+4800 btn 9
+5400 enc 6 -1
+5800 enc 6 1
+6000 shot
+6500 midi 0x90 71 100
+7300 midi 0x80 71 0
+8000 end

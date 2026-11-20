@@ -1,0 +1,38 @@
+# Volna stage 6: the patches. FM-1 ids: buttons 8 PATCH [HOME], 9 SAVE, 13 SHIFT [REC], 3 MIX [SCL]; encoders 6
+# PRESETS, 2..3 KNOB1..2.
+#   1000 PATCH: the list (00 INIT in the middle); PRESETS +1: 01 SOFT PAD; a note
+#   2000 an edit (MIX: OSC1 down): 01 SOFT PAD* (edited)
+#   2600 SAVE: asking, to 01; KNOB1 +3, PRESETS +2: to 06; KNOB3 -1 (the first letter: S -> R); SAVE: written once
+#        silent (KNOB2 would move the cursor: each cell over its knob; SOFT PAD's reverb tail: written ~5700)
+#   6000 PRESETS -5: 01 SOFT PAD, the factory's (nothing was saved there); PRESETS +5: 06 ROFT PAD as saved (the list)
+#   6800 an edit of 06 (MIX), PRESETS -4: 02 SUPERSAW; SHIFT + SAVE: RECALL brings back 06 with its edit (06 ROFT PAD*)
+900 btn 8
+1000 shot
+1100 enc 6 1
+1300 shot
+1400 keys 0x10
+1700 keys 0
+2000 btn 3
+2100 enc 2 -10
+2400 shot
+2600 btn 9
+2650 enc 2 3
+2700 enc 6 2
+2800 enc 4 -1
+2900 shot
+3000 btn 9
+3400 shot
+6000 enc 6 -5
+6200 enc 6 5
+6300 btn 8
+6400 shot
+6800 btn 3
+6900 enc 2 -5
+7100 enc 6 -4
+7200 shot
+7300 btndown 13
+7400 btn 9
+7500 btnup 13
+7600 btn 8
+7700 shot
+8100 end

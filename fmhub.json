@@ -1,0 +1,8 @@
+{
+  "what": "A wavetable synth for the FM-1 with three oscillators per voice, two filters, a modulation matrix, two effects slots and a step arpeggiator with a pattern per patch.",
+  "kinds": ["synth"],
+  "editor": "https://soundplayground.twc1.net/fm1-firmwares/volna/#editor",
+  "image": "docs/card.png",
+  "color": "#46D2F0",
+  "sounds": "own: original factory patches and generated wavetables"
+}

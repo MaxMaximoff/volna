@@ -1,0 +1,22 @@
+# Volna: ENSEMBLE (FX [GLO] = button 7, KNOB1 TYPE +6: OFF -> ENSEMBLE; FX again: row B, VIB V.RATE TONE WIDTH). OSC1
+# a sine (WAVE 0), OSC2 and OSC3 off (MIX = 3). tests/ensemble_check.py:
+#   1500 C6 (84, 1047 Hz) dry; 2600 C2 (36, 65 Hz) dry
+#   4000 C6 through ENSEMBLE (the defaults): the sum with the dry beats, the sides apart, no clicks
+#   7100 C2 through it: the bass as loud as dry (the wet's high pass: not hollowed)
+900 enc 3 -30
+1000 btn 3
+1010 enc 3 -40
+1020 enc 4 -40
+1100 btn 7
+1500 midi 0x90 84 100
+2500 midi 0x80 84 0
+2600 midi 0x90 36 100
+3600 midi 0x80 36 0
+3700 enc 2 6
+3800 shot
+4000 midi 0x90 84 100
+6500 shot
+7000 midi 0x80 84 0
+7100 midi 0x90 36 100
+8100 midi 0x80 36 0
+8500 end

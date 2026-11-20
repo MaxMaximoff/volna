@@ -1,0 +1,46 @@
+# Volna stage 6b: slides in an arp pattern. FM-1 ids: buttons 2 OSC, 3 MIX, 4 FILT, 5 ENV, 8 PATCH [HOME], 10 ARP,
+# 12 RUN [PLAY]; encoders 2..5 KNOB1..4. The sound is built from INIT here (it leans on no factory patch): OSC1 a saw
+# (WAVE 63), OSC2 and OSC3 off; AMP DECAY 70, SUST 0, no resonance (a note fades within its step, an attack stands
+# out, the level within a note is smooth); PATCH MODE MONO; ARP row A ORDER KEY UP, OCT 2, row B TEMPO 126 (1/16),
+# row C PATTERN 14 "X.x-gx.X-gx.x-g."; RUN. A chord over MIDI (A2 C3 E3). 12 of the 16 steps sound, 3 of them slides
+# (a glide step after a legato one): no attack, so 9 attacks in 16 steps, 4.7 a second (tests/arp_check.py; 6.3 if
+# the slides started their notes again).
+#   1500 MONO;  6500 the same in POLY (the voice that holds the note slides)
+900 btn 2
+920 enc 3 40
+950 btn 3
+970 enc 3 -40
+980 enc 4 -40
+1000 btn 5
+1020 enc 3 -5
+1030 enc 4 -64
+1050 btn 4
+1070 enc 3 -50
+1100 btn 8
+1120 enc 4 1
+1150 btn 10
+1170 enc 4 2
+1180 enc 5 1
+1200 btn 10
+1220 enc 2 3
+1250 btn 10
+1270 enc 2 14
+1300 btn 12
+1350 btn 8
+1400 shot
+1500 midi 0x90 45 100
+1500 midi 0x90 48 100
+1500 midi 0x90 52 100
+3000 shot
+5600 midi 0x80 45 0
+5600 midi 0x80 48 0
+5600 midi 0x80 52 0
+6000 enc 4 -1
+6100 shot
+6500 midi 0x90 45 100
+6500 midi 0x90 48 100
+6500 midi 0x90 52 100
+10600 midi 0x80 45 0
+10600 midi 0x80 48 0
+10600 midi 0x80 52 0
+11000 end
