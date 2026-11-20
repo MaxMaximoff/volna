@@ -132,7 +132,7 @@ check(p[3:8] == b"TABLE" and hi >= 10, f"PDESC TABLE: 0..{hi}, USER 1 at {user1}
 
 rA = run(sorted(lines + sound(user1), key=lambda l: int(l.split()[0])), OUT)
 _, p = reply(rA, INFO, 1)
-check(p[:2] == bytes([OK, 4]), f"INFO: protocol {p[1] if len(p) > 1 else '?'}")
+check(len(p) >= 2 and p[0] == OK and p[1] >= 3, f"INFO: protocol {p[1] if len(p) > 1 else '?'}")
 _, p = reply(rA, TINFO, 2)
 s = slots(p) if p[0] == OK else []
 check(p[0] == OK and p[1] == 4 and p[2] == 59 and struct.unpack_from("<I", p, 3)[0] == 49920

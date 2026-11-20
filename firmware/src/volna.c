@@ -1555,8 +1555,10 @@ typedef struct {                                /* the sound (the patch format g
     uint8_t etrig;                              /* the envelopes on SINGLE trigger (a bit each: AMP FLT 3 4) */
     uint8_t cat;                                /* the patch's category (2026-11-16, the Blofeld's): PC_* */
     uint32_t patver;                            /* 0: legacy reference; 1: independent patch pattern */
+    uint32_t pat_source;                        /* last template copied into this patch (1..ARP_NPAT; 0: none) */
 } patch_t;
 _Static_assert(__builtin_offsetof(patch_t, patver) >= 266u, "pattern version overlaps legacy patch bytes");
+_Static_assert(__builtin_offsetof(patch_t, pat_source) == 272u, "template source overlaps v4 patch bytes");
 static mod_slot_t *pslot(patch_t *p, uint32_t i)   /* the matrix's slot i (0..15) of patch p */
 {
     return i < NMSLOT_A ? &p->mod[i] : &p->mod2[(i - NMSLOT_A) % (NMSLOT - NMSLOT_A)];
@@ -1984,9 +1986,11 @@ static void pattern_own(patch_t *p)
 {
     uint32_t n = p->arp.pattern, i;
     if (p->patver) return;
+    p->pat_source = 0;
     if (n && n < PAT_OWN) {
         for (i = 0; i < ARP_PLEN; i++) p->ost[i] = pats.st[n - 1u][i];
         p->arp.plen = pats.len[n - 1u]; p->arp.tfac = pats.tfac[n - 1u];
+        p->pat_source = n;
     } else if (!n) {
         for (i = 0; i < ARP_PLEN; i++) p->ost[i] = AST_DEFAULT;
         p->arp.plen = ARP_PLEN; p->arp.tfac = 64;
@@ -2373,7 +2377,8 @@ static int patch_ok(const patch_t *p)           /* a patch's values all in their
         || p->arp.rate >= ARP_NRATE || p->arp.gate < 5u || p->arp.gate > 100u || p->arp.swing > 75u
         || p->arp.vel >= AV_N || p->arp.last < ARP_ON || p->arp.last >= ARP_NMODE || p->arp.tempo < 40u
         || p->arp.tempo > 300u || p->arp.pattern > PAT_OWN || p->arp.plen < 1u || p->arp.plen > ARP_PLEN
-        || p->arp.tfac > 127u || p->patver > 1u || (p->patver && p->arp.pattern != PAT_OWN)) return 0;
+        || p->arp.tfac > 127u || p->patver > 1u || (p->patver && p->arp.pattern != PAT_OWN)
+        || p->pat_source > ARP_NPAT) return 0;
     for (k = 0; k < ARP_PLEN; k++) if (p->ost[k] > 0x3FFFu) return 0;   /* (its own pattern's steps: 14 bits) */
     if (p->eq.q > EQ_QMAX) return 0;
     for (k = 0; k < EQ_NB; k++)
@@ -2862,17 +2867,20 @@ static int ed_service(void)
         ed_reply(ed_q.cmd, ed_q.seq, ED_OK, ed_out, 3); return 0;
     case ED_PATGET: {
         const uint16_t *st;
-        if (ed_q.n != 1u || (ed_q.p[0] >= ARP_NPAT && ed_q.p[0] != ED_SOUND)) break;
+        if ((ed_q.n != 1u && ed_q.n != 2u) || (ed_q.p[0] >= ARP_NPAT && ed_q.p[0] != ED_SOUND)
+            || (ed_q.n == 2u && (ed_q.p[0] != ED_SOUND || ed_q.p[1] != 1u))) break;
         slot = ed_q.p[0];
         ed_out[0] = slot; ed_out[1] = 1;
         ed_out[2] = slot == ED_SOUND ? set.p.arp.plen : patlib.bank.len[slot];
         ed_out[3] = slot == ED_SOUND ? set.p.arp.tfac : patlib.bank.tfac[slot];
         st = slot == ED_SOUND ? set.p.ost : patlib.bank.st[slot];
         for (i = 0; i < ARP_PLEN; i++) ed_wr16(ed_out + 4u + i * 2u, st[i]);
-        ed_reply(ed_q.cmd, ed_q.seq, ED_OK, ed_out, 36); return 0;
+        if (ed_q.n == 2u) ed_out[36] = (uint8_t)set.p.pat_source;
+        ed_reply(ed_q.cmd, ed_q.seq, ED_OK, ed_out, ed_q.n == 2u ? 37u : 36u); return 0;
     }
     case ED_PATPUT:
-        if (ed_q.n != 36u || (ed_q.p[0] >= ARP_NPAT && ed_q.p[0] != ED_SOUND)
+        if ((ed_q.n != 36u && ed_q.n != 37u) || (ed_q.p[0] >= ARP_NPAT && ed_q.p[0] != ED_SOUND)
+            || (ed_q.n == 37u && (ed_q.p[0] != ED_SOUND || ed_q.p[36] > ARP_NPAT))
             || ed_q.p[1] != 1 || !ed_q.p[2] || ed_q.p[2] > ARP_PLEN || ed_q.p[3] > 127u) break;
         for (i = 0; i < ARP_PLEN; i++) if (ed_rd16(ed_q.p + 4u + i * 2u) > 0x3FFFu) break;
         if (i != ARP_PLEN) break;
@@ -2882,6 +2890,7 @@ static int ed_service(void)
             for (i = 0; i < ARP_PLEN; i++) set.p.ost[i] = (uint16_t)ed_rd16(ed_q.p + 4u + i * 2u);
             set.p.arp.plen = ed_q.p[2]; set.p.arp.tfac = ed_q.p[3];
             set.p.arp.pattern = PAT_OWN; set.p.patver = 1;
+            set.p.pat_source = ed_q.n == 37u ? ed_q.p[36] : 0u;
             sound_apply(); ed_known();
             ed_reply(ed_q.cmd, ed_q.seq, ED_OK, &slot, 1); return 1;
         }

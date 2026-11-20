@@ -72,7 +72,7 @@ run "Volna: the envelopes' modes in the firmware (LOOP S1S2 held, ONE SHOT and A
 run "Volna: the modes heard (the loop swings, the one shot outlasts its tap)" python3 tests/envmode_check.py
 run "Volna: the patches (PRESETS, an edit marked, SAVE with a name to another number, RECALL; the factory's in range)" sh tests/run_host.sh tests/scripts/patches.txt
 run "Volna: a SAVE waiting for silence writes the sound as it was, another patch loaded meanwhile (or its very number)" python3 tests/savewait_check.py
-run "Volna: the patch's own pattern (03 BASS-1's groove; COPY, SEQ on OWN, saved with the patch, the bank untouched)" python3 tests/own_check.py
+run "Volna: the patch's own pattern (03 BASS-1's groove; LOAD, SEQ, SAVE and preset change, template untouched)" python3 tests/own_check.py
 run "Volna: the envelopes' A D S R as destinations (VELO -> A.ATK)" sh tests/run_host.sh tests/scripts/envmod.txt
 run "Volna: a hard note's attack slower than a soft one's" python3 tests/envmod_check.py
 run "Volna: all 16 envelope destinations heard (CC 1 at 0 and 127, a note each)" python3 tests/envdst_check.py

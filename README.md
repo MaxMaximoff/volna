@@ -9,11 +9,11 @@ Volna — таблично-волновой синтезатор с арпедж
 Нужны Linux x86-64 или WSL2, Python 3 с Pillow, [тулчейн JieLi 20260730.1](https://jl-update.oss-cn-shenzhen.aliyuncs.com/jieli-linux-toolchains-20260730.1.tar.xz) и [AC79 SDK](https://gitee.com/Jieli-Tech/fw-AC79_AIoT_SDK) на теге `AC79NN_SDK_V1.2.1_2023-12-13`. Пути задаются в `JIELI_TOOLCHAIN` и `AC79_SDK`. По умолчанию это `~/.jieli/toolchain` и `~/fw-AC79_AIoT_SDK`.
 
 ```sh
-sh build.sh --release 0.5-test
+sh build.sh --release 0.5.1-test --board fm1
 VOLNA_LOCAL_WT=0 sh tests/run_tests.sh
 ```
 
-Пакет `build/volna-0.5-test.fwsc` содержит штатные таблицы Volna. SHA-256 проверенной на FM-1 сборки — `5079701accfc6282ef711185fbd3b059d2bdd54ffff46bf699701212811b190b`. Identity прошивки — `FM-1_946`. Миграция патчей, сохранение и библиотека заготовок описаны в [документации паттернов](docs/patterns.md), а команды редактора — в [описании протокола](docs/editor-protocol.md).
+Пакет `build/volna-0.5.1-test.fwsc` содержит штатные таблицы Volna. SHA-256 проверенной на FM-1 сборки — `4e72b2531404b1c05c398a2fba0c5447d8c9a5f99fbac71131cabb61076b11aa`. Identity прошивки — `FM-1_946`. В этой сборке LOAD сохраняет номер исходной заготовки вместе с патчем. Миграция, сохранение и библиотека заготовок описаны в [документации паттернов](docs/patterns.md), команды редактора — в [описании протокола v5](docs/editor-protocol.md).
 
 В тестовой сборке используются общие USB PID `1209:0001` и `1209:0002`. Эти номера предназначены для частных тестов и могут совпадать с идентификаторами других устройств. [Условия pid.codes](https://pid.codes/1209/0001/).
 

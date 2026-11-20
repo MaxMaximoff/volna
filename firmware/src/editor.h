@@ -9,7 +9,8 @@
 #define VOLNA_EDITOR_H
 #include <stdint.h>
 
-#define ED_PROTO 4u                             /* 4: independent patterns and an explicit pattern library.
+#define ED_PROTO 5u                             /* 5: track a patch pattern's source template.
+                                                   4: independent patterns and an explicit pattern library.
                                                    1: INFO NAMES GET PUT; 2 (2026-11-17): the parameters, WATCH;
                                                    3 (2026-11-17): the user wavetables (TABLE ..) */
 #define ED_TAG0 0x7Du                           /* the non-commercial ID, then "VL" */

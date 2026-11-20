@@ -19,6 +19,7 @@ int main(void)
         for (j = 0; j < ARP_PLEN; j++) p.ost[j] = AST_MAKE(AS_CHORD, 1u, 6u, 3u, 7u) | AST_TIEBIT;
         q = p; pattern_own(&p);
         assert(p.patver == 1 && p.arp.pattern == PAT_OWN && patch_ok(&p));
+        assert(p.pat_source == (i < PAT_OWN ? i : 0u));
         for (j = 0; j < ARP_PLEN; j++) assert(p.ost[j] == (i == 0 ? AST_DEFAULT : i == PAT_OWN ? q.ost[j] : pats.st[i-1][j]));
         q = p; pattern_own(&p); assert(!memcmp(&q, &p, sizeof p));
     }
@@ -44,6 +45,11 @@ int main(void)
     host_patlib_fail = 0;
     assert(!patlib_store(1, p.ost, 3, 44));
     assert(patlib_at == 1 && patlib.generation == 2 && patlib.bank.len[1] == 3);
+    /* A v4 patch keeps the steps, with no source metadata in its shorter record. */
+    ed_record(record, &q, "V4          ");
+    ed_wr16(record + 2, 272u);
+    assert(ed_unrecord(record, 16 + 272u, &p, name));
+    assert(p.pat_source == 0 && !memcmp(p.ost, q.ost, sizeof p.ost));
     /* Two patches using the same legacy reference become independent copies. */
     p = PATCH_DEFAULT; p.arp.pattern = 2; pattern_own(&p); q = p;
     p.ost[0] ^= 1; assert(p.ost[0] != q.ost[0] && q.ost[0] == pats.st[1][0]);
@@ -53,6 +59,20 @@ int main(void)
     assert(patch_put(42, &q, "FAILED      ") == -1);
     patch_get(42, &q, name); assert(!memcmp(&p, &q, sizeof p));
     host_psec_fail = 0;
+    /* LOAD follows the saved patch, including after an edit to its independent copy. */
+    patch_load(42);
+    pset(P_APAT, 3);
+    pset(P_STYPE, AS_PAUSE);
+    assert(pget(P_APAT) == 3 && !patch_put(42, &set.p, set.name));
+    patch_load(43);
+    assert(pget(P_APAT) == 0);
+    pset(P_APAT, 12);
+    assert(!patch_put(43, &set.p, set.name));
+    bank_at = -1;
+    patch_load(42);
+    assert(pget(P_APAT) == 3 && pget(P_STYPE) == AS_PAUSE);
+    patch_load(43);
+    assert(pget(P_APAT) == 12);
     assert(!host_blob[PAT_BLOB][0]); /* no migration or library write touched legacy storage */
     puts("pattern migration and library recovery: OK");
     return 0;

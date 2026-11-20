@@ -3,12 +3,12 @@
 # tests/own_check.py counts the arp's notes as they go out over MIDI (a tie sends none; an accent moves the velocity):
 #   1000 PRESETS +3: 03 BASS-1, its own groove "=pxqxp=pxpXqxp=p"; A2 held 1500 .. 5500 (120 BPM 1/16, two bars):
 #        13 notes a bar, velocities 100 100 68 100 100 100 100 100 127 68 100 100 100
-#   6000 PRESETS +1: 04 INIT; RUN; ARP row C, COPY +2: bank pattern 2 (x.x.x.x...) into OWN; a chord (A3 C4 E4)
+#   6000 PRESETS +1: 04 FILT; RUN; ARP row C, LOAD 01 +1: template 2 (x.x.x.x...) into OWN; a chord (A3 C4 E4)
 #        7000 .. 13000: 4 notes a second (7000 .. 9000)
 #   9100 SEQ (it edits OWN): the white key of step 2 picks it, again switches it on: 9 of 16, 4.5 a second
 #        (11000 .. 13000, a whole bar after the edit)
-#   13300 SAVE to 05 (KNOB1 +1): the bank's record and the tails' blob (the own steps); 14000 ARP, PATTERN -15:
-#        the bank's 2, as it was (4 a second), chord 14500 .. 16500
+#   13300 SAVE to 05 (KNOB1 +1): the patch's record with its steps; 14000 ARP, LOAD -2 then +2:
+#        copy template 2 again to hear the unedited steps (4 a second), chord 14500 .. 16500
 #   16800 PRESETS -1, +1: 05 as saved, OWN with step 2 on: 4.5 a second, chord 17500 .. 19500
 900 btn 8
 1000 enc 6 3
@@ -19,7 +19,7 @@
 6200 btn 10
 6300 btn 10
 6400 btn 10
-6500 enc 2 2
+6500 enc 2 1
 6600 shot
 7000 midi 0x90 57 100
 7000 midi 0x90 60 100

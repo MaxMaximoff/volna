@@ -1,5 +1,6 @@
 # Volna's screens for the site's page (web/src/fw/volna/shots/): the factory sounds playing, a page each.
-# APP_VER=0.4 tests/run_host.sh tests/scripts/showcase.txt, then web/scripts/volna-shots.mjs picks them up.
+# VOLNA_CFLAGS=-DVOLNA_HIDE_SPLASH_VERSION tests/run_host.sh tests/scripts/showcase.txt
+# Then web/scripts/volna-shots.mjs picks up the screens.
 # FM-1 ids: buttons 2 OSC, 3 MIX, 4 FILT, 5 ENV, 6 MOD, 7 FX, 8 PATCH, 9 SAVE, 10 ARP; encoders 0 SELECT, 2..5 KNOB1..4.
 #   500 the splash
 #   01 SOFT PAD, a chord: 2600 OSC (the table drifts with LFO 1), 3600 FX slot 2 (the plate), 4400 ENV (the voices'

@@ -468,7 +468,6 @@ static uint32_t tab_of(int32_t v)
          : v <= (int32_t)NTAB ? (uint32_t)v - 1u
          : UWT_N && v <= (int32_t)(NTAB + UWT_N) ? TAB_U0 + (uint32_t)v - NTAB - 1u : NTAB - 1u;
 }
-static uint8_t pat_from;                        /* COPY: the bank pattern last copied into OWN (0: none; the panel's) */
 static int32_t pget(uint32_t id)
 {
     const osc_set_t *o = &set.p.osc[set.osc_sel];
@@ -552,10 +551,9 @@ static int32_t pget(uint32_t id)
     case P_WCUT: case P_WRES: case P_WTYPE: case P_WSRC: case P_WRATE:
         return set.p.fx[set.fx_sel].p[id == P_WRATE ? 5 : id - P_WCUT];
     case P_WDEPTH: return (int32_t)set.p.fx[set.fx_sel].p[4] - 64;
-    case P_APAT: return pat_from;
+    case P_APAT: case P_ACOPY: return (int32_t)set.p.pat_source;
     case P_APLEN: return *pat_len(pat_num());
     case P_ATFAC: return *pat_tfac(pat_num());
-    case P_ACOPY: return pat_from;
     case P_STYPE: return (int32_t)AST_TYPE(*cur_step());
     case P_SACC: return (int32_t)AST_ACC(*cur_step());
     case P_SLEN: return AST_TIE(*cur_step()) ? 8 : (int32_t)AST_LEN(*cur_step());   /* (8: TIE) */
@@ -717,8 +715,8 @@ static void pset(uint32_t id, int32_t v)
         break;
     }
     case P_WDEPTH: set.p.fx[set.fx_sel].p[4] = (uint8_t)(v + 64); break;
-    case P_APAT:
-        pat_from = (uint8_t)v;
+    case P_APAT: case P_ACOPY:                   /* COPY is the old panel command for LOAD. */
+        set.p.pat_source = (uint32_t)v;
         if (v > 0 && v <= ARP_NPAT) {
             uint32_t i;
             for (i = 0; i < ARP_PLEN; i++) set.p.ost[i] = patlib.bank.st[v - 1][i];
@@ -728,16 +726,6 @@ static void pset(uint32_t id, int32_t v)
         break;
     case P_APLEN: *pat_len(pat_num()) = (uint8_t)v; break;
     case P_ATFAC: *pat_tfac(pat_num()) = (uint8_t)v; break;
-    case P_ACOPY:                               /* a bank pattern into the patch's own, OWN plays it (turned on:
-                                                   each one in turn, heard; 0 copies nothing) */
-        pat_from = (uint8_t)v;
-        if (v) {
-            uint32_t i;
-            for (i = 0; i < ARP_PLEN; i++) set.p.ost[i] = patlib.bank.st[v - 1][i];
-            set.p.arp.plen = patlib.bank.len[v - 1]; set.p.arp.tfac = patlib.bank.tfac[v - 1];
-            set.p.arp.pattern = PAT_OWN;
-        }
-        break;
     case P_STYPE: case P_SACC: case P_SLEN: case P_STIM: case P_SGLIDE: {
         uint16_t *st = cur_step(), x = *st;
         uint32_t ty = AST_TYPE(x), gl = AST_GLIDE(x), ac = AST_ACC(x), ln = AST_LEN(x), tm = AST_TIM(x), tie = AST_TIE(x);
@@ -2689,7 +2677,9 @@ static void ui_splash(void)
     cv_begin(240, 120, C_BG);
     cv_word((240 - WORD_SPLASH_W) / 2, 50, WORD_SPLASH, WORD_SPLASH_W, WORD_SPLASH_H, C_WHITE);
     ctext(120, 95, &FONT_SM, "WAVETABLE SYNTH", C_OFF);
+#if !defined(DINGHY_HOST) || !defined(VOLNA_HIDE_SPLASH_VERSION)
     ctext(120, 108, &FONT_SM, "v" APP_VER, C_DARK);
+#endif
     cv_blit(0, 0);
     while (fm1_ms - t0 < 700u) {                /* (a frame, then the platform and MIDI, until 0.7 s) */
         splash_waves(fm1_ms - t0);

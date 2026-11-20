@@ -1,7 +1,7 @@
 # Licensing
 
 **Volna** is a copy of [Dinghy](https://github.com/zvenson/dinghy) (commit `ea1b6bf`), licensed the same way:
-`GPL-3.0-only`. Volna's own changes (`firmware/src/volna.c` beyond Dinghy's app, the synth engine, `NOTES.md`) are
+`GPL-3.0-only`. Volna's own changes (`firmware/src/volna.c` beyond Dinghy's app and the synth engine) are
 by the fm-firmwares project. The table below is Dinghy's, kept as it is: `firmware/src/dinghy.c` is now
 `firmware/src/volna.c`.
 

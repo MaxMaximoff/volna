@@ -73,7 +73,7 @@ r = run([
 t, cmd, p = r.get(1, (0, 0, b"\xff"))
 check(cmd == 0x81 and p[0] == OK and len(p) == 27, f"INFO: {cmd:#x} {p.hex()}")
 proto, npatch, size, pmax, prog = p[1], p[2], p[3] | p[4] << 8, p[5] | p[6] << 8, p[7]
-check(proto == 4 and npatch == 100 and pmax == 494 and 8 <= size <= pmax, f"INFO fields {proto} {npatch} {size} {pmax}")
+check(proto == 5 and npatch == 100 and pmax == 494 and 8 <= size <= pmax, f"INFO fields {proto} {npatch} {size} {pmax}")
 check(p[9:17].rstrip(b"\0") == b"VOLNA", f"INFO name {p[9:17]}")
 print(f"INFO: protocol {proto}, {npatch} patches, patch_t {size} B, the sound from {prog:02d}, version {p[17:25].rstrip(bytes(1))}")
 
