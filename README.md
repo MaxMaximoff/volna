@@ -9,10 +9,10 @@ Volna — таблично-волновой синтезатор с арпедж
 Нужны Linux x86-64 или WSL2, Python 3 с Pillow, [тулчейн JieLi 20260730.1](https://jl-update.oss-cn-shenzhen.aliyuncs.com/jieli-linux-toolchains-20260730.1.tar.xz) и [AC79 SDK](https://gitee.com/Jieli-Tech/fw-AC79_AIoT_SDK) на теге `AC79NN_SDK_V1.2.1_2023-12-13`. Пути задаются в `JIELI_TOOLCHAIN` и `AC79_SDK`. По умолчанию это `~/.jieli/toolchain` и `~/fw-AC79_AIoT_SDK`.
 
 ```sh
-sh build.sh --release 1.0 --board fm1
+sh build.sh --release 1.1 --board fm1
 ```
 
-Пакет `build/volna-1.0.fwsc` содержит штатные таблицы Volna. SHA-256 — `290ab29ffaa569c5990525755c26e7f71e02d3b51b06c30ed737cf48da491aa2`. Identity прошивки — `FM-1_946`. LOAD сохраняет номер исходной заготовки вместе с патчем. Миграция, сохранение и библиотека заготовок описаны в [документации паттернов](docs/patterns.md), команды редактора — в [описании протокола v5](docs/editor-protocol.md).
+Пакет `build/volna-1.1.fwsc` содержит штатные таблицы Volna. Identity прошивки — `FM-1_3006`. В Volna 1.0 использовался `FM-1_946`, редактор поддерживает оба номера. LOAD сохраняет номер исходной заготовки вместе с патчем. Миграция, сохранение и библиотека заготовок описаны в [документации паттернов](docs/patterns.md), команды редактора — в [описании протокола v5](docs/editor-protocol.md).
 
 Сборка использует общие USB-идентификаторы `1209:0001` и `1209:0002`. Они могут совпадать с идентификаторами других устройств. [Условия pid.codes](https://pid.codes/1209/0001/).
 

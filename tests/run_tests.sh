@@ -204,7 +204,7 @@ for m in ":SMK-37 Pro_9" "-elite:SMK-37 Elite_9" "-mke:MKE-P37_9"; do
     for f in build/volna*-smk37${m%%:*}.fwsc; do
         [ -f "$f" ] || continue
         found=1
-        v=46                                    # Volna: a fixed identity tail (tools/build.py IDENTITY_TAIL)
+        v=46                                    # Volna: fixed SMK-37 identity suffix
         run "SMK-37 package $f: layout, identity ${m#*:}$v, the loader marker" python3 tests/smk_pkg_test.py "$f" "${m#*:}$v"
     done
 done

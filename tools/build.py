@@ -55,16 +55,14 @@ SDK_SHA256 = {
 }
 
 BOARD = "fm1"                       # fm1 (default) or smk37: BOARD env or --board
-BOARD_PREFIX = {"fm1": "FM-1_9", "smk37": "SMK-37 Pro_9"}   # identity: prefix + IDENTITY_TAIL
-# Volna: one fixed identity for every build, FM-1_946 (the hub's 9N decades are all taken by other firmwares,
-# 46 was free on 2026-11-13; see firmwares/README.md). The version lives in APP_VER only, not in the identity.
-IDENTITY_TAIL = "46"
+# Keep the product identity stable across versions. APP_VER carries the release number.
+BOARD_IDENTITY = {"fm1": "FM-1_3006", "smk37": "SMK-37 Pro_946"}
 BOARD_DEFS = {"fm1": [], "smk37": ["-DBOARD_SMK37=1"]}
 MODELS = {"pro": "SMK-37 Pro", "elite": "SMK-37 Elite", "mke": "MKE-P37"}   # smk37: one keyboard, three names
 DATA_FAMILY = "VOLNA"               # the SMK store's owner tag (store.h): 1..7 of A-Z 0-9
 SCREEN_NAME = "VOLNA"               # the update loader's screen (FM-1, ldr_screen.c): the name and its colour (RGB565)
 SCREEN_COLOUR = 0x2D7F              # sea blue, about #29AEFF
-PRODUCT = "FM-1_946"
+PRODUCT = BOARD_IDENTITY[BOARD]
 VERSION = None                      # APP_VER for release builds
 
 
@@ -301,8 +299,8 @@ def mmio_check():
 def main():
     global PRODUCT, VERSION, BOARD, APP_SLOT
     ap = argparse.ArgumentParser()
-    ap.add_argument("--release", metavar="X.Y", help="release build: version string X.Y (the identity stays FM-1_946)")
-    ap.add_argument("--board", choices=sorted(BOARD_PREFIX), default=None,
+    ap.add_argument("--release", metavar="X.Y", help="release build: version string X.Y (the board identity stays fixed)")
+    ap.add_argument("--board", choices=sorted(BOARD_IDENTITY), default=None,
                     help="target board: fm1 (default) or smk37 (default: $BOARD, else fm1)")
     ap.add_argument("--model", choices=sorted(MODELS), default=None,
                     help="smk37: the model name, pro (default), elite or mke (default: $MODEL, else pro)")
@@ -315,21 +313,21 @@ def main():
     import gen_uwt                          # firmware/gen/wt_local.h: the local wavetables, or a stub
     gen_uwt.main()
     BOARD = (a.board or os.environ.get("BOARD") or "fm1").lower().replace("-", "")
-    if BOARD not in BOARD_PREFIX:
+    if BOARD not in BOARD_IDENTITY:
         raise SystemExit(f"BOARD={BOARD}: use fm1 or smk37")
     model = (a.model or os.environ.get("MODEL") or "pro").lower()
     if model not in MODELS or (model != "pro" and BOARD != "smk37"):
         raise SystemExit(f"MODEL={model}: pro, elite or mke, with BOARD=smk37")
     fm1pkg_make.set_board(BOARD)
     APP_SLOT = fm1pkg_make.APP_SLOT
+    PRODUCT = BOARD_IDENTITY[BOARD]
     suffix = "" if BOARD == "fm1" else "-" + BOARD
     if model != "pro":              # another model name: identity, loader and update record (fm1_cc.h SMK_MODEL)
         BOARD_DEFS[BOARD] = [*BOARD_DEFS[BOARD], f'-DSMK_MODEL="{MODELS[model]}"']
-        BOARD_PREFIX[BOARD] = BOARD_PREFIX[BOARD].replace(MODELS["pro"], MODELS[model])
+        PRODUCT = PRODUCT.replace(MODELS["pro"], MODELS[model])
         suffix += "-" + model
-    PRODUCT = BOARD_PREFIX[BOARD] + IDENTITY_TAIL
     name = f"volna{suffix}.fwsc"
-    if a.release:                   # one digit each: the identity has room for two (X.Y; a .Z only in the text)
+    if a.release:                   # APP_VER uses X.Y[.Z]; the optional suffix only names the file
         m = re.fullmatch(r"(\d)\.(\d)(\.\d)?(-[A-Za-z0-9]+)?", a.release)
         if not m:
             raise SystemExit(f"--release {a.release}: use X.Y, X.Y.Z or X.Y-suffix, one digit each")
